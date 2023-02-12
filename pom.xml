@@ -3,18 +3,20 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>com.github.blackbaroness</groupId>
-    <artifactId>rei</artifactId>
+    <groupId>com.github.blackbaroness.rei</groupId>
+    <artifactId>root</artifactId>
     <version>${revision}</version>
     <packaging>pom</packaging>
 
     <properties>
-        <revision>0.1</revision>
+        <revision>0.1-SNAPSHOT</revision>
         <java.version>8</java.version>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
 
     <modules>
         <module>common</module>
+        <module>bukkit</module>
     </modules>
 
     <build>
@@ -102,7 +104,6 @@
             <plugin>
                 <artifactId>maven-compiler-plugin</artifactId>
                 <configuration>
-                    <encoding>UTF-8</encoding>
                     <source>${java.version}</source>
                     <target>${java.version}</target>
                     <release>${java.version}</release>
@@ -142,4 +143,21 @@
             </plugin>
         </plugins>
     </build>
+
+    <dependencies>
+        <!-- https://mvnrepository.com/artifact/org.jetbrains/annotations -->
+        <dependency>
+            <groupId>org.jetbrains</groupId>
+            <artifactId>annotations</artifactId>
+            <version>24.0.0</version>
+            <scope>provided</scope>
+        </dependency>
+        <!-- https://mvnrepository.com/artifact/org.projectlombok/lombok -->
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <version>1.18.26</version>
+            <scope>provided</scope>
+        </dependency>
+    </dependencies>
 </project>
