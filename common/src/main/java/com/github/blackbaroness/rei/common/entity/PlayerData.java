@@ -2,19 +2,26 @@ package com.github.blackbaroness.rei.common.entity;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
-import lombok.Getter;
-import org.checkerframework.checker.nullness.qual.Nullable;
+import lombok.AccessLevel;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+import lombok.experimental.FieldDefaults;
 
+import java.util.Date;
 import java.util.UUID;
 
-@Getter
+@Data
 @Entity
+@AllArgsConstructor
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
+@FieldDefaults(level = AccessLevel.PRIVATE)
 public class PlayerData {
 
-    private @Nullable UUID uuid;
-
     @Id
-    private @Nullable String nickname;
+    String nickname;
 
+    UUID uuid;
 
+    Date registrationDate;
 }

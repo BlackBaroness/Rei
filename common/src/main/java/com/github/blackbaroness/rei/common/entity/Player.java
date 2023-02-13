@@ -1,34 +1,40 @@
 package com.github.blackbaroness.rei.common.entity;
 
 import com.github.blackbaroness.rei.common.view.Title;
-import lombok.NonNull;
+import org.checkerframework.checker.i18n.qual.LocalizableKey;
+import org.checkerframework.dataflow.qual.Pure;
+import org.checkerframework.dataflow.qual.SideEffectFree;
 
 import java.util.Locale;
 import java.util.UUID;
 
 public interface Player {
 
+    @SideEffectFree
     boolean online();
 
-    @NonNull String nick();
+    @Pure
+    String nick();
 
-    @NonNull UUID uuid();
+    @Pure
+    UUID uuid();
 
-    @NonNull Locale locale();
+    @SideEffectFree
+    Locale locale();
 
-    void sendMessage(@NonNull String message);
+    void sendMessage(String message);
 
-    void sendMessageRaw(@NonNull String message);
+    void sendMessageRaw(String message);
 
-    void sendMessageLocalized(@NonNull String key, @NonNull Object... args);
+    void sendMessageLocalized(@LocalizableKey String key, Object... args);
 
-    void sendTitle(@NonNull Title title);
+    void sendTitle(Title title);
 
-    void sendTitleRaw(@NonNull Title title);
+    void sendTitleRaw(Title title);
 
-    void sendTitleLocalized(@NonNull Title title);
+    void sendTitleLocalized(Title title);
 
-    void kick(@NonNull String reason);
+    void kick(String reason);
 
 
 }
