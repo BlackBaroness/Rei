@@ -1,4 +1,4 @@
-
+@file:Suppress("VulnerableLibrariesLocal")
 
 plugins {
     id("com.github.blackbaroness.rei.java-conventions")

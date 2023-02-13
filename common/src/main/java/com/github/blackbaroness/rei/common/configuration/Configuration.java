@@ -4,5 +4,6 @@ import java.util.List;
 
 public interface Configuration {
     String example();
+
     List<String> exampleList();
 }

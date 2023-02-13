@@ -3,6 +3,7 @@ package com.github.blackbaroness.rei.common.entity;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import lombok.Getter;
+import org.checkerframework.checker.nullness.qual.Nullable;
 
 import java.util.UUID;
 
@@ -10,10 +11,10 @@ import java.util.UUID;
 @Entity
 public class PlayerData {
 
-    private UUID uuid;
+    private @Nullable UUID uuid;
 
     @Id
-    private String nickname;
+    private @Nullable String nickname;
 
 
 }
