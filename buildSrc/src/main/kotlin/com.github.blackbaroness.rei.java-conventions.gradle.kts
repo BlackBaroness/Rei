@@ -1,6 +1,9 @@
 import com.github.jengelman.gradle.plugins.shadow.tasks.ShadowJar
 import org.checkerframework.gradle.plugin.CheckerFrameworkExtension
 
+group = "com.github.blackbaroness.rei"
+version = "0.1-SNAPSHOT"
+
 plugins {
     `java-library`
     id("io.freefair.lombok")
@@ -13,23 +16,35 @@ repositories {
     maven("https://repo.maven.apache.org/maven2/")
 }
 
-group = "com.github.blackbaroness.rei"
-version = "0.1-SNAPSHOT"
+dependencies {
+    // https://mvnrepository.com/artifact/org.junit.jupiter/junit-jupiter-api
+    testImplementation("org.junit.jupiter:junit-jupiter-api:5.9.2")
+    // https://mvnrepository.com/artifact/org.junit.jupiter/junit-jupiter-engine
+    testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:5.9.2")
+}
 
 final val javaVersion = JavaVersion.VERSION_17
 java.sourceCompatibility = javaVersion
 java.targetCompatibility = javaVersion
 
-tasks.withType<JavaCompile>() {
+tasks.withType<JavaCompile> {
     options.encoding = "UTF-8"
+    options.isFork = true
 }
 
-tasks.withType<Javadoc>() {
+tasks.withType<Javadoc> {
     options.encoding = "UTF-8"
 }
 
 tasks.withType<ShadowJar> {
     exclude("META-INF/**", "OSGI-INF/**", "**/package-info.class")
+}
+
+tasks.test {
+    useJUnitPlatform()
+    failFast = true
+    reports.html.required.set(false)
+    reports.junitXml.required.set(false)
 }
 
 configure<CheckerFrameworkExtension> {
