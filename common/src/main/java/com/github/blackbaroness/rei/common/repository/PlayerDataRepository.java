@@ -44,6 +44,6 @@ public interface PlayerDataRepository {
     Optional<PlayerData> findByRegistrationDateBetween(Date from, Date to) throws RepositoryException;
 
     @SideEffectFree
-    Optional<PlayerData> findAllByRegistrationDateBetween(Date from, Date to) throws RepositoryException;
+    Collection<? extends PlayerData> findAllByRegistrationDateBetween(Date from, Date to) throws RepositoryException;
 
 }
