@@ -1,6 +1,7 @@
 package com.github.blackbaroness.rei.common.repository;
 
 import com.github.blackbaroness.rei.common.entity.PlayerData;
+import com.github.blackbaroness.rei.common.repository.exception.RepositoryException;
 import org.checkerframework.checker.index.qual.NonNegative;
 import org.checkerframework.dataflow.qual.Pure;
 import org.checkerframework.dataflow.qual.SideEffectFree;
@@ -9,64 +10,40 @@ import java.util.Collection;
 import java.util.Date;
 import java.util.Optional;
 import java.util.UUID;
-import java.util.concurrent.CompletableFuture;
 
 public interface PlayerDataRepository {
+
+    void openConnection() throws RepositoryException;
+
+    void closeConnection() throws RepositoryException;
 
     @Pure
     String name();
 
-    ///////////////////////////////////////////////////////////////////////////
-    // Ping
-    ///////////////////////////////////////////////////////////////////////////
+    PlayerData create(String nickname, UUID uuid) throws RepositoryException;
+
+    PlayerData merge(PlayerData playerData) throws RepositoryException;
+
+    void refresh(PlayerData playerData) throws RepositoryException;
+
+    void delete(PlayerData playerData) throws RepositoryException;
 
     @SideEffectFree
-    @NonNegative long ping() throws Exception;
+    @NonNegative long ping() throws RepositoryException;
 
     @SideEffectFree
-    CompletableFuture<Long> pingAsync();
-
-    ///////////////////////////////////////////////////////////////////////////
-    // Nickname
-    ///////////////////////////////////////////////////////////////////////////
+    Optional<PlayerData> findByNickname(String nickname) throws RepositoryException;
 
     @SideEffectFree
-    Optional<PlayerData> findByNickname(String nickname);
+    Optional<PlayerData> findByUuid(UUID uuid) throws RepositoryException;
 
     @SideEffectFree
-    CompletableFuture<Optional<PlayerData>> findByNicknameAsync(String nickname);
-
-    ///////////////////////////////////////////////////////////////////////////
-    // UUID
-    ///////////////////////////////////////////////////////////////////////////
+    Collection<? extends PlayerData> findAllByUuid(UUID uuid) throws RepositoryException;
 
     @SideEffectFree
-    Optional<PlayerData> findByUuid(UUID uuid);
+    Optional<PlayerData> findByRegistrationDateBetween(Date from, Date to) throws RepositoryException;
 
     @SideEffectFree
-    CompletableFuture<Optional<PlayerData>> findByUuidAsync(UUID uuid);
-
-    @SideEffectFree
-    Collection<PlayerData> findAllByUuid(UUID uuid);
-
-    @SideEffectFree
-    CompletableFuture<Collection<PlayerData>> findAllByUuidAsync(UUID uuid);
-
-    ///////////////////////////////////////////////////////////////////////////
-    // Registration date
-    ///////////////////////////////////////////////////////////////////////////
-
-    @SideEffectFree
-    Optional<PlayerData> findByRegistrationDateBetween(Date from, Date to);
-
-    @SideEffectFree
-    CompletableFuture<Optional<PlayerData>> findByRegistrationDateBetweenAsync(Date from, Date to);
-
-    @SideEffectFree
-    Optional<PlayerData> findAllByRegistrationDateBetween(Date from, Date to);
-
-    @SideEffectFree
-    CompletableFuture<Optional<PlayerData>> findAllByRegistrationDateBetweenAsync(Date from, Date to);
-
+    Optional<PlayerData> findAllByRegistrationDateBetween(Date from, Date to) throws RepositoryException;
 
 }
