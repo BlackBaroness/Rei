@@ -1,27 +1,27 @@
 package com.github.blackbaroness.rei.common.entity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import lombok.AccessLevel;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-import lombok.experimental.FieldDefaults;
+import com.github.blackbaroness.rei.common.repository.exception.RepositoryException;
+import org.checkerframework.dataflow.qual.Pure;
+import org.checkerframework.dataflow.qual.SideEffectFree;
 
 import java.util.Date;
 import java.util.UUID;
 
-@Data
-@Entity
-@AllArgsConstructor
-@NoArgsConstructor(access = AccessLevel.PROTECTED)
-@FieldDefaults(level = AccessLevel.PRIVATE)
-public class PlayerData {
+public interface PlayerData {
 
-    @Id
-    String nickname;
+    @Pure
+    String nickname();
 
-    UUID uuid;
+    @Pure
+    UUID uuid();
 
-    Date registrationDate;
+    @SideEffectFree
+    Date registrationDate();
+
+    void registrationDate(Date registrationDate);
+
+    @SideEffectFree
+    String password();
+
+    void password(String password);
 }
