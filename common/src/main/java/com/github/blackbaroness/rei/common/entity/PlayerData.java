@@ -1,6 +1,5 @@
 package com.github.blackbaroness.rei.common.entity;
 
-import com.github.blackbaroness.rei.common.repository.exception.RepositoryException;
 import org.checkerframework.dataflow.qual.Pure;
 import org.checkerframework.dataflow.qual.SideEffectFree;
 

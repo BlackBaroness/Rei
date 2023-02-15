@@ -1,7 +1,9 @@
 package com.github.blackbaroness.rei.common.repository.impl.hibernate;
 
 import com.github.blackbaroness.rei.common.entity.PlayerData;
-import jakarta.persistence.*;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
 import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
 import lombok.experimental.FieldDefaults;
