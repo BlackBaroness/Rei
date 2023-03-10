@@ -35,5 +35,5 @@ public interface AsyncPlayerDataRepository extends PlayerDataRepository {
     CompletableFuture<Optional<PlayerData>> findByRegistrationDateBetweenAsync(Date from, Date to);
 
     @SideEffectFree
-    CompletableFuture<Optional<PlayerData>> findAllByRegistrationDateBetweenAsync(Date from, Date to);
+    CompletableFuture<Collection<? extends PlayerData>> findAllByRegistrationDateBetweenAsync(Date from, Date to);
 }
