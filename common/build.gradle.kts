@@ -9,5 +9,5 @@ dependencies {
     implementation("com.google.inject:guice:5.1.0")
     implementation("it.unimi.dsi:fastutil:8.5.12")
     implementation("org.hibernate.orm:hibernate-core:6.2.0.CR3")
-    implementation("org.hibernate.orm:hibernate-hikaricp:6.2.0.CR2")
+    implementation("org.hibernate.orm:hibernate-hikaricp:6.2.0.CR3")
 }
